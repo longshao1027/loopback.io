@@ -1,78 +1,126 @@
 ---
-title: "LoopBack - 中文"
-layout: translation
+lang: en
+title: LoopBack 2.x
+redirect_from:
+  - /doc/en/lb2/Using-LoopBack-with-IBM-API-Connect.html
 toc: false
-sidebar: zh_lb2_sidebar
-lang: zh
-tags:
-permalink: /doc/zh/lb2/index.html
-summary:
+keywords: LoopBack 2.x
+tags: [getting_started]
+sidebar: lb2_sidebar
+permalink: /doc/en/lb2/index.html
+summary: LoopBack 2.x is the current production release.
 ---
+1. **[Install LoopBack tools](Installation)**, either IBM API Connect (`apic`) or StrongLoop tools (`slc`).
+1. **Read [LoopBack core concepts](LoopBack-core-concepts.html)** to learn about key concepts you need to understand to use LoopBack.
+1. **Follow [Getting started with LoopBack](Getting-started-with-LoopBack.html)** for a quick tutorial introduction.
+
+Check out the [LoopBack Developer Forum](https://groups.google.com/forum/#!forum/loopbackjs) to ask questions and discuss how you are using LoopBack.
 
 {% include styled-box.html
 content="
-LoopBack 是一个可扩展的开源Node.js 框架。它可以让我们
+[IBM API Connect](https://developer.ibm.com/apiconnect/) is an end-to-end API management solution that uses LoopBack to create APIs, and provides integrated build and deployment tools:
 
-- 无需写任何代码(或少量的代码)来创建REST API
-- 访问任意数据库中的数据甚至是外部的REST API
-- 可以在API上定义关系型数据模型和访问限制(ACL)
-- 在移动APP中使用地理位置，文件访问和推送消息
-- 提供 Android, iOS 和 JavaScript SDKs快速创建有数据支持的应用程序
-- 方便的应用部署，无论在云上还是自己的服务器
+- **Integrated experience across the entire API lifecycle**, including API and micro-service creation in Node.js and Java.
+-  **Self-service access to APIs** with built-in developer portals and social collaboration tools.
+-  **Unified management and orchestration of Node.js and Java** for deployment on-premises and in Bluemix.
+-  **Built-in security and gateway policies** with extensive security options and governance policies.
+
+For more information, see [IBM API Connect](https://developer.ibm.com/apiconnect/).
 " %}
 
-阅读 [LoopBack &#26680;&#24515;&#27010;&#24565;](6095111.html)， 学习核心概念和理解LoopBack的用法。
+**If you are an IBM customer, for technical support see the [IBM Support Portal](http://www-01.ibm.com/support/docview.wss?uid=swg21593214).**
 
-根据 [LoopBack&#21021;&#32423;&#25945;&#31243;](6095006.html)
+## The LoopBack framework
 
-了解LoopBack的一些关键功能。在Google Group上订阅 [LoopBack 开发论坛 提问，讨论，心得](https://groups.google.com/forum/#!forum/loopbackjs)
+The LoopBack framework is a set of Node.js modules that you can use independently or together to quickly build REST APIs.
 
-## LoopBack 框架
+A LoopBack application interacts with data sources through the LoopBack model API, available locally within Node.js, [remotely over REST](Built-in-models-REST-API), and via native client APIs for
+[iOS, Android, and HTML5](Client-SDKs). Using these APIs, apps can query databases,
+store data, upload files, send emails, create push notifications, register users, and perform other actions provided by data sources and services.
 
-{% include see-also.html title="no" content="
-Node JS新手可以参考以下文章
+Clients can call LoopBack APIs directly using [Strong Remoting](Strong-Remoting.html), a pluggable transport layer that enables you to provide backend APIs over REST, WebSockets, and other transports.
 
-- [PHP Developers](http://strongloop.com/strongblog/node-js-php-get-started/)
-- [Rails Developers](http://strongloop.com/strongblog/node-js-ruby-on-rails-getting-started/)
-- [Java Developers](http://strongloop.com/strongblog/node-js-java-getting-started/)
-" %}
-
-LoopBack 框架是由一组Node.js的模块构成的。你可以单独使用这些模块或把它们组合在一起使用。
-应用通过LoopBack model API可以使用以下三种方式访问数据。
-
-- 将模型作为一个标准的Node对象使用
-- 通过HTTP <a href="/display/zh/Built-in+models+REST+API">REST API</a> 调用
-- 通过封装好的API SDK，包括<a href="/display/zh/Client+SDKs">iOS, Android &#21644; Angular</a>
-
-应用程序通过LoopBack model API用以上三种方式查询数据，储存数据，上传文件，发送email, 推送消息，注册/登陆用户等远程或本地的服务。用户也可以通过<a href="/display/LB/Strong+Remoting">Strong Remoting</a>将后端的API通过REST, WebSocket(或其他传输协议)供客户端调用。
-
-以下的图表展示了核心LoopBack模块，以及他们之间的关系。
+The following diagram illustrates key LoopBack modules, how they are related, and their dependencies.
 
 {% include image.html file="9830413.png" alt="LoopBack modules" %}
 
-### LoopBack 框架模块
+### LoopBack framework modules
 
-<table class="confluenceTable">
-<tbody>
-<tr><th>模块类型</th><th>描述</th><th>用途</th><th>模块</th></tr>
-<tr><td>数据模型</td><td>数据模型和API服务</td><td>迅速创建动态的数据模型及API且无需关注数据是如何储存的。</td><td>loopback</td></tr>
-<tr><td>抽象方式</td><td>数据模型的抽象层，用与实现和不同数据库的交互</td><td>可以连接到不同的数据库或服务，并且提供一个对象用于CRUD，通过这个对象用户不必关心数据层具体使用的是什么数据库，可以是RDBS, MongoDB, Memory。</td><td><div style="width: 200px;">loopback-datasource-juggler</div></td></tr>
-<tr><td>初始化</td><td>初始化应用</td><td>用于配置数据源, 定制/设置数据模型，并且将数据模型加载到指定的数据源上。同时可以 配置应用本身和执行启动脚本。</td><td>loopback-boot</td></tr>
-<tr><td>执行序列</td><td>执行Express中间件</td><td>设置中间件，使得这些中间件可以在应用程序的不同阶段被执行。</td><td>loopback-phase</td></tr>
-<tr><td>数据</td><td>连接RDBMS 和 noSQL 数据库</td><td>用于连接各种<span style="line-height: 1.4285715;">RDBMS和noSQL数据源的模块。</td><td>loopback-connector-mongodb
-loopback-connector-mysql
-loopback-connector-postgresql
-loopback-connector-msssql
-loopback-connector-oracle</td></tr>
-<tr><td>集成</td><td>连接现有的企业或外部数据服务</td><td>用于连接到已有的REST或SOAP数据服务。</td><td>loopback-connector-rest
-loopback-connector-soap</td></tr>
-<tr><td>服务</td><td>连接常用服务</td><td>整合已有的服务到Loopback应用中，包括推送消息，第三方验证等......</td><td>loopback-component-push
-loopback-component-storage
-loopback-component-passport
-loopback-component-sync <br />(开发中)</td></tr>
-<tr><td>Gateway</td><td>API gateway</td><td>Secure your APIs and inject quality of service aspects to the invocation and response workflow.
- </td><td>loopback-gateway
-loopback-component-oauth2</td></tr>
-<tr><td>客户端</td><td>客户端 SDK</td><td>可以使用通过REST访问LoopBack API的原生平台组件 (iOS, Android, AngularJS)</td><td>loopback-sdk-ios
-loopback-sdk-android
-loopback-sdk-angular</td></tr></tbody></table>
+<table style="width: 1000px;">
+  <thead>
+    <tr>
+      <th style="width: 80px;">Category</th>
+      <th style="width:200px;">Description</th>
+      <th>Use to…</th>
+      <th style="width: 280px;">Modules</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Models</td>
+      <td>Model and API server</td>
+      <td>Dynamically mock-up models and expose them as APIs without worrying about persisting.</td>
+      <td>loopback</td>
+    </tr>
+    <tr>
+      <td>Abstraction</td>
+      <td>Model data abstraction to physical persistence</td>
+      <td>Connect to multiple data sources or services and get back an abstracted model with CRUD capabilities independent of backing data source.</td>
+      <td>loopback-datasource-juggler</td>
+    </tr>
+    <tr>
+      <td>Initialization</td>
+      <td>Application initialization</td>
+      <td>Configure data sources, customize models, configure models and attach them to data sources; Configure application settings and run custom boot scripts.</td>
+      <td>loopback-boot</td>
+    </tr>
+    <tr>
+      <td>Sequencing</td>
+      <td>Middleware execution</td>
+      <td>Configure middleware to be executed at various points during application lifecycle.</td>
+      <td>loopback-phase</td>
+    </tr>
+    <tr>
+      <td>Data</td>
+      <td>RDBMS and noSQL physical data sources</td>
+      <td>Enable connections to RDBMS and noSQL data sources and get back an abstracted model.</td>
+      <td markdown="1">
+- loopback-connector-mongodb
+- loopback-connector-mysql
+- loopback-connector-postgresql
+- loopback-connector-msssql
+- loopback-connector-oracle
+- [Many others...](Connectors-reference.html)
+</td>
+    </tr>
+    <tr>
+      <td>Integration</td>
+      <td>General system connectors</td>
+      <td>Connect to an existing system that expose APIs through common enterprise and web interfaces</td>
+      <td markdown="1">
+- loopback-connector-rest
+- loopback-connector-soap
+</td>
+    </tr>
+    <tr>
+      <td>Components</td>
+      <td>Add-ons to core LoopBack</td>
+      <td>Integrate with pre-built services packaged into components.</td>
+      <td markdown="1">
+- loopback-component-push
+- loopback-component-storage
+- loopback-component-passport
+</td>
+    </tr>
+    <tr>
+      <td>Clients</td>
+      <td>Client SDKs</td>
+      <td>Develop client app using native platform objects (iOS, Android, AngularJS) that interact with LoopBack APIs via REST.</td>
+<td markdown="1">
+- loopback-sdk-ios
+- loopback-sdk-android
+- loopback-sdk-angular
+</td>
+    </tr>
+  </tbody>
+</table>

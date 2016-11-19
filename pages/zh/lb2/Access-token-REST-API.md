@@ -1,120 +1,120 @@
----
-title: "Access token REST API"
-lang: en
-layout: navgroup
-navgroup: access-control
-keywords: LoopBack
-tags: [authentication, models]
-sidebar: lb2_sidebar
-permalink: /doc/en/lb2/Access-token-REST-API.html
-summary: The built-in access token model represents the access token that LoopBack creates for an authenticated user.
----
-All of the endpoints in the access token REST API are inherited from the generic [PersistedModel REST API](PersistedModel-REST-API.html).
-The reference is provided here for convenience.
+--- ---
+title：“访问令牌REST API”
+lang：zh
+layout：navgroup
+navgroup：访问控制
+关键字：LoopBack
+标签：[认证，模型]
+侧栏：lb2_sidebar
+固定链接：/doc/en/lb2/Access-token-REST-API.html
+摘要：内置访问令牌模型表示LoopBack为已验证用户创建的访问令牌。
+--- ---
+访问令牌REST API中的所有端点都从通用[PersistedModel REST API]（PersistedModel-REST-API.html）继承。
+为方便起见，此处提供了参考。
 
 <br clear="all"/>
-**Quick reference**
+**快速参考**
 
 <table>
-  <tbody>
-    <tr>
-      <th>URI Pattern</th>
-      <th>HTTP Verb</th>
-      <th>Default Permission</th>
-      <th width="200">Description</th>
-      <th width="300">Arguments</th>
-    </tr>
-    <tr>
-      <td><code>/accessTokens</code></td>
-      <td>POST</td>
-      <td>Allow</td>
-      <td>
-        <a href="PersistedModel-REST-API.html#create-model-instance">Add access token instance</a> and persist to data source.
-      </td>
-      <td>JSON object (in request body)</td>
-    </tr>
-    <tr>
-      <td><code>/accessTokens</code></td>
-      <td>GET</td>
-      <td>Deny</td>
-      <td><a href="PersistedModel-REST-API.html#find-matching-instances">Find instances</a> of accessTokens that match specified filter.</td>
-      <td>
-        One or more filters in query parameters:
-        <ul>
-          <li>where</li>
-          <li>include</li>
-          <li>order</li>
-          <li>limit</li>
-          <li>skip / offset</li>
-          <li>fields</li>
-        </ul>
-      </td>
-    </tr>
-    <tr>
-      <td><code>/accessTokens</code></td>
-      <td>PUT</td>
-      <td>Deny</td>
-      <td><a href="PersistedModel-REST-API.html#update--insert-instance">Update / insert access token instance</a> and persist to data source.</td>
-      <td>JSON object (in request body)</td>
-    </tr>
-    <tr>
-      <td><code>/accessTokens/<em>id</em></code></td>
-      <td>GET</td>
-      <td>Deny</td>
-      <td><a href="PersistedModel-REST-API.html#find-instance-by-id">Find access token by ID</a>: Return data for the specified access token instance ID.</td>
-      <td><em>id</em>, the access token instance ID (in URI path)</td>
-    </tr>
-    <tr>
-      <td><code>/accessTokens/<em>id</em></code></td>
-      <td>PUT</td>
-      <td>Deny</td>
-      <td><a href="PersistedModel-REST-API.html#update-model-instance-attributes">Update attributes</a> for specified access token ID and persist.</td>
-      <td>
-        Query parameters:
-        <ul>
-          <li>data&nbsp;- An object containing property name/value pairs</li>
-          <li><em>id</em>&nbsp;- The model id</li>
-        </ul>
-      </td>
-    </tr>
-    <tr>
-      <td><code>/accessTokens/<em>id</em></code></td>
-      <td>DELETE</td>
-      <td>Deny</td>
-      <td><a href="PersistedModel-REST-API.html#delete-model-instance">Delete access token</a> with specified instance ID.</td>
-      <td><em>id</em>, access token ID<em> </em>(in URI path)</td>
-    </tr>
-    <tr>
-      <td><code>/accessTokens/<em>id</em>/exists</code></td>
-      <td>GET</td>
-      <td>Deny</td>
-      <td>
-        <a href="PersistedModel-REST-API.html#check-instance-existence">Check instance existence</a>: Return true if specified access token ID exists.
-      </td>
-      <td>
-        URI path:
-        <ul>
-          <li><em>id</em> - Model instance ID</li>
-        </ul>
-      </td>
-    </tr>
-    <tr>
-      <td><code>/accessTokens/count</code></td>
-      <td>GET</td>
-      <td>Deny</td>
-      <td>
-        <a href="PersistedModel-REST-API.html#get-instance-count">Return the number of access token instances</a>&nbsp;that matches specified where clause.
-      </td>
-      <td>Where filter specified in query parameter</td>
-    </tr>
-    <tr>
-      <td><code>/accessTokens/findOne</code></td>
-      <td>GET</td>
-      <td>Deny</td>
-      <td>
-        <a href="PersistedModel-REST-API.html#find-first-instance">Find first access token instance</a> that matches specified filter.
-      </td>
-      <td>Same as <a href="PersistedModel-REST-API.html#find-matching-instances">Find matching instances</a>.</td>
-    </tr>
-  </tbody>
-</table>
+  <tbody>
+    <tr>
+      <th> URI模式</ th>
+      <th> HTTP动词</ th>
+      <th>默认权限</ th>
+      <th width =“200”>说明</ th>
+      <th width =“300”>参数</ th>
+    </ tr>
+    <tr>
+      <td> <code> / accessTokens </ code> </ td>
+      <td> POST </ td>
+      <td>允许</ td>
+      <td>
+        <a href="PersistedModel-REST-API.html#create-model-instance">添加访问令牌实例</a>并持久保存到数据源。
+      </ td>
+      <td> JSON对象（在请求正文中）</ td>
+    </ t>
+    <tr>
+      <td> <code> / accessTokens </ code> </ td>
+      <td> GET </ td>
+      <td>拒绝</ td>
+      <td> <a href="PersistedModel-REST-API.html#find-matching-instances">查找与指定过滤器匹配的accessTokens的实例</a>。</ td>
+      <td>
+        查询参数中的一个或多个过滤器：
+        <ul>
+          <li>其中</ li>
+          <li>包括</ li>
+          <li>订购</ li>
+          <li>限制</ li>
+          <li>跳过/偏移</ li>
+          <li>字段</ li>
+        </ ul>
+      </ td>
+    </ tr>
+    <tr>
+      <td> <code> / accessTokens </ code> </ td>
+      <td> PUT </ td>
+      <td>拒绝</ td>
+      <td> <a href="PersistedModel-REST-API.html#update--insert-instance">更新/插入访问令牌实例</a>并持久保存到数据源。</ td>
+      <td> JSON对象（在请求正文中）</ td>
+    </ tr>
+    <tr>
+      <td> <code> / accessTokens / <em> id </ em> </ code> </ td>
+      <td> GET </ td>
+      <td>拒绝</ td>
+      <td> <a href="PersistedModel-REST-API.html#find-instance-by-id">按ID查找访问令牌</a>：返回指定访问令牌实例ID的数据。</ td>
+      <td> <em> id </ em>，访问令牌实例ID（在URI路径中）</ td>
+    </ tr>
+    <tr>
+      <td> <code> / accessTokens / <em> id </ em> </ code> </ td>
+      <td> PUT </ td>
+      <td>拒绝</ td>
+      <td> <a href="PersistedModel-REST-API.html#update-model-instance-attributes">更新指定访问令牌ID的属性</a>并持久保存。</ td>
+      <td>
+        查询参数：
+        <ul>
+          <li> data＆nbsp; - 包含属性名称/值对的对象</ li>
+          <li> <em> id </ em>＆nbsp; - 模型ID </ li>
+        </ ul>
+      </ td>
+    </ tr>
+    <tr>
+      <td> <code> / accessTokens / <em> id </ em> </ code> </ td>
+      <td> DELETE </ td>
+      <td>拒绝</ td>
+      <td> <a href="PersistedModel-REST-API.html#delete-model-instance">使用指定的实例ID删除访问令牌</a>。</ td>
+      <td> <em> id </ em>，访问令牌ID <em> </ em>（在URI路径中）</ td>
+    </ tr>
+    <tr>
+      <td> <code> / accessTokens / <em> id </ em> / exists </ code> </ td>
+      <td> GET </ td>
+      <td>拒绝</ td>
+      <td>
+        <a href="PersistedModel-REST-API.html#check-instance-existence">检查实例存在</a>：如果存在指定的访问令牌ID，则返回true。
+      </ td>
+      <td>
+        URI路径：
+        <ul>
+          <li> <em> id </ em> - 模型实例ID </ li>
+        </ ul>
+      </ td>
+    </ tr>
+    <tr>
+      <td> <code> / accessTokens / count </ code> </ td>
+      <td> GET </ td>
+      <td>拒绝</ td>
+      <td>
+        <a href="PersistedModel-REST-API.html#get-instance-count">返回与指定的where子句匹配的访问令牌实例数</a>。
+      </ td>
+      <td>查询参数</ td>中指定的过滤器
+    </ tr>
+    <tr>
+      <td> <code> / accessTokens / findOne </ code> </ td>
+      <td> GET </ td>
+      <td>拒绝</ td>
+      <td>
+        <a href="PersistedModel-REST-API.html#find-first-instance">查找与指定过滤器匹配的第一个访问令牌实例</a>。
+      </ td>
+      <td>与<a href="PersistedModel-REST-API.html#find-matching-instances">查找匹配的实例</a>相同。</ td>
+    </ tr>
+  </ tbody>
+</ table>

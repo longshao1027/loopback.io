@@ -11,38 +11,37 @@ summary:
 
 {% include content/generator-create-app.html lang=page.lang %}
 
-### Synopsis
+### 详情介绍
 
-Adds a new access control list (ACL) entry to a LoopBack application.
-
+添加一个新的访问控制列表(ACL)进入一个LoopBack应用程序。
 ```shell
 $ [slc | apic] loopback:acl [options]
 ```
 
 {% include content/generator-builtin-model-caveat.html lang=page.lang%}
 
-### Options
+### 选项
 
 `-h, --help`
-Print the generator's options and usage.
+输出 generator的 选择和使用.
 
 `--skip-cache`
-Do not remember prompt answers. Default is false.
+不记住提示符. 默认是 false.
 
 `--skip-install`
-Do not automatically install dependencies. Default is false.
+不自动安装的依赖. 默认是 false.
 
-### Interactive Prompts
+### 交互式提示符
 
-The tool will prompt you for the necessary information and then modify the [Model definition JSON file](Model-definition-JSON-file.html) accordingly.
+该工具将提示您必要的信息,然后修改(模型定义JSON文件) [Model definition JSON file](Model-definition-JSON-file.html) .
 
-The generator prompts for:
+ generator 提示符 包括如下:
 
-* Name of the model to which you want to apply access control or all models.
-* Scope of access control: All methods and properties or a specific method.
-* If you choose a specific method, the method's name.
-* Access type: read, write, execute, or all.
-* Role: all users, any unauthenticated user, any authenticated user, the object owner.
-* Permission to apply: explicitly grant access or explicitly deny access.
+* 你想应用访问控制或全部模型的模型名字.
+* 你想访问的域: 所有的方法和属性或者特殊方法 .
+* 如果你选择一个特定的方法,该方法的名字.
+* 访问类型 : read, write, execute, or 全部.
+* 角色: 全部 users, 任何 未授权 user, 任何 授权的 user, 只能是所有者 .
+* 谁允许访问: 显式授权访问或明确拒绝访问.
 
-For general information about setting up ACLs, see [Controlling data access](Controlling-data-access.html).
+有关设置acl的更多信息,访问控制数据(Controlling-data-access.html)。

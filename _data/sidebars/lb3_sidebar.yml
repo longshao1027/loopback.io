@@ -1,0 +1,23 @@
+title: LoopBack 3.0
+url: /doc/en/lb3/index.html
+children:
+
+- title: 'LoopBack 3.0'
+  url: /doc/en/lb3/index.html
+  output: 'web, pdf'
+
+- title: '3.0 Release Notes'
+  url: /doc/en/lb3/3.0-Release-Notes.html
+  output: 'web, pdf'
+
+- title: 'Migrating apps to LoopBack 3.0'
+  url: /doc/en/lb3/Migrating-to-3.0.html
+  output: 'web, pdf'
+
+- title: 'Operation hooks (version 3.0)'
+  url: /doc/en/lb3/Operation-hooks-version-3.0.html
+  output: 'web, pdf'
+
+- title: 'Valid names in Loopback (version 3.0)'
+  url: /doc/en/lb3/Valid-names-in-LoopBack.html
+  output: 'web, pdf'
